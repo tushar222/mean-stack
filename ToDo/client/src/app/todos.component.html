@@ -1,0 +1,50 @@
+<!-- <div class="container">
+<div *ngfor = "let todo of todolist">
+
+    <div class="col-md-3">
+        {{todo.text}}
+    </div>
+    <div class="col-md-3">
+        {{todo.isCompleted}}
+    </div>
+
+</div>
+
+</div> -->
+
+<div class="container">
+    <form (submit)="AddTodo()">
+        <div class="form-group">
+           <h4><label>Create TODO:</label></h4> 
+            <input type="text" [(ngModel)]="text" name="todoText" class="form-control">
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success" value="Add">
+        </div>
+    </form>
+
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="bg-primary">
+          <th>ToDo</th>
+          <th>Complete Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todolist">
+          <td>{{todo.text}}</td>
+          <td *ngIf="todo.isCompleted">Completed</td>
+          <td *ngIf="!todo.isCompleted">Not Completed</td>
+          <td>
+              <input type="button" (click)="deleteThisTodo(todo._id)" value="Delete" class="btn btn-danger" style="margin-right: 0.5cm;">
+              <input type="button" (click)="updateThisTodo(todo._id)" value="Mark Completed" class="btn btn-warning">
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
